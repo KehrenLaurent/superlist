@@ -38,6 +38,8 @@ class NewVisitorTest(LiveServerTestCase):
         # quand on tappe sur enter, la page s'actualise, maintenant la page affiche
         # "1: Buy peacock feathers" est un element de la To Do list
         inputbox.send_keys(Keys.ENTER)
+        import time
+        time.sleep(5)
         edith_list_url = self.browser.current_url
         self.assertRegex(edith_list_url, '/lists/.+')
         self.check_for_row_in_list_table('1: Buy peacock feathers')

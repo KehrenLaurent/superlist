@@ -5,18 +5,11 @@
 </head>
 
 <body>
-    <h1>Your To-Do list</h1>
+    <h1>Commencer une To-Do</h1>
     <form method="post">
-        <input id='id_new_item' placeholder="Enter a to-do item">
+        <input id='id_new_item' name="new_item" placeholder="Enter a to-do item">
         {% csrf_token %}
     </form>
-    <table id="id_list_table">
-        {% for item in items %}
-        <tr>
-            <td>1: {{ item.text }}</td>
-        </tr>
-        {% endfor %}
-    </table>
 </body>
 
 </html>
