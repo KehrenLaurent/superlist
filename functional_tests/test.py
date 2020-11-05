@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from django.test import LiveServerTestCase
 
+import time
+
 
 class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
@@ -38,8 +40,7 @@ class NewVisitorTest(LiveServerTestCase):
         # quand on tappe sur enter, la page s'actualise, maintenant la page affiche
         # "1: Buy peacock feathers" est un element de la To Do list
         inputbox.send_keys(Keys.ENTER)
-        import time
-        time.sleep(5)
+        time.sleep(1)
         edith_list_url = self.browser.current_url
         self.assertRegex(edith_list_url, '/lists/.+')
         self.check_for_row_in_list_table('1: Buy peacock feathers')
@@ -49,6 +50,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys("Use peacock feathers to make a fly")
         inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # La page se met à jour, elle affiche les deux elements
         self.check_for_row_in_list_table('1: Buy peacock feathers')
@@ -71,6 +73,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # Francis recoit son url unique
         francis_list_url = self.browser.current_url
